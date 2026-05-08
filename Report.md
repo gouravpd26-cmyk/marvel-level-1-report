@@ -40,3 +40,28 @@ Practical execution involved utilizing the Docker CLI to manage an `nginx` web s
 * **Inspection & Monitoring:** Employed `docker ps` to inspect active container states, verifying uptime and port configurations. Used `docker logs my_web_server` to monitor internal HTTP traffic and verify process health.
 * **Lifecycle Teardown:** Maintained local system hygiene by executing `docker stop` to gracefully halt the running process, followed immediately by `docker rm` to permanently delete the container instance.
 
+![CLI](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-2(4).png?raw=true)
+
+![CLI-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-2(5).png?raw=true)
+
+![Port](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-2(3).png?raw=true)
+
+---
+
+## 3. Dockerize a Simple Application
+
+### 1. Task Objective
+The goal of this task was to learn Dockerfile basics, containerize a simple Node.js API application, build the Docker image, run it as a container locally, and verify successful deployment via the browser.
+
+### 2. Writing the Dockerfile
+To containerize the application, a `Dockerfile` was created at the root of the project. A lightweight base image, `node:18-alpine`, was selected. The file sets the working directory to `/app`, copies the `package.json` file, and runs `npm install` to install dependencies. Afterwards, the remaining application files (`index.js`) were copied into the container. The `Dockerfile` exposes port 3000 and defines the startup command using `CMD ["npm", "start"]`. 
+
+### 3. Building the Docker Image and Understanding Layers
+The Docker image was built using the command `docker build -t my-simple-app .`. During the build process, the concept of image layers became evident. Each instruction in the `Dockerfile` (like `FROM`, `WORKDIR`, `COPY`, and `RUN`) created a discrete, read-only layer. By copying `package.json` and running `npm install` *before* copying the rest of the application code, Docker caches the dependency layer. This optimization ensures that subsequent builds are significantly faster if only the application code changes.
+
+### 4. Running the Container and Port Mapping
+The container was executed in detached mode using `docker run -d -p 8080:3000 --name running-app my-simple-app`. A crucial part of this step was mapping the ports. The `-p 8080:3000` flag mapped port 8080 on the host machine to port 3000 inside the isolated container, establishing a bridge for external traffic to reach the application.
+
+### 5. Verification
+The deployment was verified by navigating to `http://localhost:8080` in a web browser, successfully displaying the starter code's API response: "Task 3 Complete! Hello from Docker inside my container!". The application is fully containerized and operational.
+

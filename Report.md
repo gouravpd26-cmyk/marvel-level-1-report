@@ -98,3 +98,11 @@ Created a declarative manifest file (`nginx-pod.yaml`) to define the desired sta
 *   `kubectl logs my-first-nginx`: Accessed the container's output logs for diagnostic purposes.
 *   `kubectl delete pod my-first-nginx` & `minikube stop`: Cleaned up the deployed resources and safely powered down the local cluster to free system memory.
 
+![img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-5(1).png?raw=true)
+
+![img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-5(2).png?raw=true)
+
+![img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-5(3).png?raw=true)
+
+---
+

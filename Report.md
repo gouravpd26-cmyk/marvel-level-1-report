@@ -65,3 +65,36 @@ The container was executed in detached mode using `docker run -d -p 8080:3000 --
 ### 5. Verification
 The deployment was verified by navigating to `http://localhost:8080` in a web browser, successfully displaying the starter code's API response: "Task 3 Complete! Hello from Docker inside my container!". The application is fully containerized and operational.
 
+![img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-3(1).png?raw=true)
+
+![img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-3(2).png?raw=true)
+
+![img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-3(3).png?raw=true)
+
+---
+
+## Task 5: Kubernetes Basics and Writing Pod Specs  
+
+### 1. Objective Overview
+The goal of this task was to understand core Kubernetes concepts, configure a local Minikube environment, write a YAML manifest to deploy an Nginx container, and interact with the cluster using `kubectl` commands.
+
+### 2. Core Concepts Mastered
+*   **Cluster:** The overarching system of machines running Kubernetes.
+*   **Control Plane:** The management layer that orchestrates the cluster, dictates container placement, and monitors overall health.
+*   **Nodes:** The virtual or physical worker machines that execute the workloads.
+*   **Pods:** The smallest deployable unit in Kubernetes, acting as an environment wrapper around one or more containers (e.g., an Nginx web server).
+
+### 3. Writing the Pod Specification
+Created a declarative manifest file (`nginx-pod.yaml`) to define the desired state of the Pod:
+*   **`apiVersion` & `kind`:** Specified that the resource to be created is a `Pod`.
+*   **`metadata`:** Assigned the identifiable name `my-first-nginx` and applied organizational labels.
+*   **`spec`:** Defined the container configuration, instructing the cluster to pull the official `nginx:latest` image and expose `containerPort: 80`.
+
+### 4. Key Commands Executed
+*   `minikube start`: Initialized the local single-node cluster.
+*   `kubectl apply -f nginx-pod.yaml`: Deployed the Pod directly into the cluster.
+*   `kubectl get pods`: Monitored the real-time status of active Pods.
+*   `kubectl describe pod my-first-nginx`: Inspected the Pod's lifecycle events, image pulling status, and internal configuration details.
+*   `kubectl logs my-first-nginx`: Accessed the container's output logs for diagnostic purposes.
+*   `kubectl delete pod my-first-nginx` & `minikube stop`: Cleaned up the deployed resources and safely powered down the local cluster to free system memory.
+

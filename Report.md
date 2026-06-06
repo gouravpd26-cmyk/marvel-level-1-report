@@ -1,3 +1,5 @@
+# CL domain
+
 ## 1. Working with Git and GitHub Basics
 
 ### Task Overview
@@ -106,3 +108,94 @@ Created a declarative manifest file (`nginx-pod.yaml`) to define the desired sta
 
 ---
 
+# CY domain
+
+## Task 1: Fundamentals of Computer Networking: Introduction
+
+A network is a collection of connected things. Just like a friend group or a city’s transit system, a computer network links devices—from laptops to traffic lights—to share data. 
+
+Networks scale from two devices to the global internet. Because they power everything from power grids to social media, securing these connections is the foundation of cybersecurity.
+
+---
+
+## Task 2: Fundamentals of Computer Networking: Internet
+
+The Internet started in the late 1960s with ARPANET, later becoming a global information library in 1989 when Tim Berners-Lee created the World Wide Web. 
+
+Essentially a "network of networks," it connects small private groups into a massive public network. To communicate across this global web, every device uses a unique address—acting like a name tag—to ensure data reaches the right destination.
+
+---
+
+## Task 3: Fundamentals of Computer Networking: IP Address
+
+Devices use IP and MAC addresses to identify each other. An **IP address** is like a temporary name (e.g., 192.168.1.10) that can change. It can be private for local networks or public for the internet. Because IPv4 addresses ran out, IPv6 was created to offer virtually unlimited space. 
+
+Conversely, a **MAC address** is a permanent physical fingerprint built into hardware. However, attackers can bypass security using "MAC spoofing," making it unsafe to rely on MAC addresses alone.
+
+---
+
+## Task 4: Fundamentals of Computer Networking: Ports
+
+Ports are numbered communication channels (from 0 to 65535) where data enters and leaves a device, acting like specialized harbor docks for specific traffic. 
+
+Standardized "well-known ports" (0–1024) ensure applications communicate consistently; for example, HTTP uses Port 80, while HTTPS uses Port 443. While these defaults are standard practice to keep browsing seamless, they can be customized—requiring users to specify the custom port manually in the network address. 
+
+---
+
+## Task 5: Fundamentals of Computer Networking: Packets and Frames
+
+Data travels across networks by breaking large files into smaller units called packets and frames. A **packet** (Layer 3) contains the data and IP addresses, while a **frame** (Layer 2) encapsulates the packet with MAC addresses for local delivery—much like putting a letter inside an envelope.
+
+Packets include critical header fields like the Source/Destination IPs, a Checksum for corruption checks, and a Time To Live (TTL) value to prevent eternal network congestion.
+
+---
+## Task 6: Fundamentals of Computer Networking: Networking Devices
+
+Network devices use physical memory and logical operating systems to connect hardware, direct traffic, and enforce security across the OSI model layers.
+
+### Core Connectivity Devices
+* **Hub (Layer 1):** A basic device that blindly broadcasts incoming data to all ports, causing traffic collisions and inefficiencies.
+* **Switch (Layer 2):** Connects local devices (LAN) intelligently, using MAC addresses to forward data packets only to the intended recipient.
+* **Access Point (Layer 2/1):** Bridges wired and wireless networks, extending LAN connectivity to Wi-Fi devices.
+* **Router (Layer 3):** Connects entirely different networks. It uses IP addresses to find efficient paths, manages traffic via NAT/DHCP, and secures boundaries.
+* **Multilayer Switch (Layers 2 & 3):** Combines the rapid local switching of Layer 2 with the hardware-based routing of Layer 3 to handle inter-VLAN traffic seamlessly.
+
+### Security and Defense Devices
+* **Firewall:** Acts as a barrier between trusted and untrusted networks, filtering traffic based on security rules. Next-Gen Firewalls (NGFW) use Deep Packet Inspection to catch hidden malware.
+* **IDPS:** **IDS** passively monitors and alerts administrators about suspicious traffic (like an alarm). **IPS** sits inline to actively detect and block threats in real time.
+* **VPN:** Creates an encrypted tunnel over the public internet to provide secure remote access (Site-to-Site or Remote Access), ensuring data confidentiality.
+
+---
+## Task 7: Protocols: DNS
+
+The **Domain Name System (DNS)** serves as the phonebook of the Internet. Because computers communicate using numbers while humans prefer names, DNS translates human-readable domain names (like `google.com`) into machine-readable IP addresses (like `142.250.195.78`). 
+
+Without DNS, users would have to memorize complex strings of numbers for every website they want to visit.
+
+---
+## Task 8: Protocols: DHCP
+
+**Dynamic Host Configuration Protocol (DHCP)** is an application-layer protocol (using UDP ports 67/68) that automatically configures network settings—like IP addresses, subnet masks, default gateways, and DNS servers—for connecting devices. While servers require static, manual IP setups, everyday mobile devices rely on DHCP to avoid configuration hassle and IP address conflicts.
+
+### The DORA Process
+When connecting to a network, a device initially uses broadcast addresses (`0.0.0.0` and MAC `ff:ff:ff:ff:ff:ff`) to run through four quick steps:
+
+1. **Discover:** The client broadcasts a request to locate available DHCP servers.
+2. **Offer:** The server suggests an available IP address and network details.
+3. **Request:** The client asks to officially lease that specific IP address.
+4. **Acknowledge:** The server confirms the setup, officially putting the device online.
+
+---
+## Task 9: Protocols: ICMP
+
+The **Internet Control Message Protocol (ICMP)** is used for network diagnostics and error reporting, helping devices communicate connectivity issues. Two essential tools rely on it:
+
+### 1. Ping
+Acts like digital ping-pong to test if a target system is reachable. 
+* **Process:** Your device sends an **Echo Request (Type 8)**, and the target answers with an **Echo Reply (Type 0)**. 
+* **Output:** It measures Round-Trip Time (RTT) and packet loss. Missing replies mean the target is offline or a firewall is blocking ICMP.
+
+### 2. Traceroute
+Maps the exact path (hops) data takes to a destination by manipulating the packet's **Time-To-Live (TTL)** value. Each router drops the TTL by 1; when TTL hits 0, the router drops the packet and sends back an **ICMP Time Exceeded (Type 11)** message, revealing its IP address and delay.
+
+---

@@ -74,6 +74,28 @@ The deployment was verified by navigating to `http://localhost:8080` in a web br
 ![img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-3(3).png?raw=true)
 
 ---
+## Task 4: Launch and manage an AWS EC2 Instance
+
+### Objective Overview
+* Provision and manage a live AWS EC2 virtual machine to transition from local development to cloud infrastructure.
+* Configure secure remote access and deploy a lightweight web server (Nginx) accessible via a public IP.
+
+### Implementation Summary
+* **AWS Setup:** Resolved initial billing e-mandate loops to successfully activate the AWS Free Tier console.
+* **Provisioning:** Launched a `t3.micro` instance running the Amazon Linux operating system.
+* **Security & Access:** Configured the AWS Security Group to explicitly allow inbound traffic on Ports 22 (SSH) and 80 (HTTP).
+* **Troubleshooting Permissions:** Overcame Windows NTFS and OneDrive permission conflicts by disabling file inheritance and strictly limiting `.pem` read access to a single user profile.
+* **Deployment:** Connected securely via SSH using the `ec2-user` profile, installed the Nginx web server via the `dnf` package manager, and successfully verified public web access.
+* **Cleanup:** Terminated the instance and its attached storage volumes to ensure zero ongoing costs.
+
+### Concepts Mastered
+* **IaaS Fundamentals:** Gained practical, hands-on experience provisioning and configuring raw cloud compute resources.
+* **Compute Mechanics:** Understood the `t3.micro` burstable CPU credit system and its fixed memory constraints.
+* **Network Security:** Mastered using AWS Security Groups as stateful, virtual firewalls to enforce the principle of least privilege.
+* **Cryptographic Authentication:** Transitioned from traditional password-based logins to highly secure asymmetric key-pair (`.pem`) remote access.
+
+
+---
 
 ## Task 5: Kubernetes Basics and Writing Pod Specs  
 
@@ -171,6 +193,14 @@ Network devices use physical memory and logical operating systems to connect har
 The **Domain Name System (DNS)** serves as the phonebook of the Internet. Because computers communicate using numbers while humans prefer names, DNS translates human-readable domain names (like `google.com`) into machine-readable IP addresses (like `142.250.195.78`). 
 
 Without DNS, users would have to memorize complex strings of numbers for every website they want to visit.
+
+![Image-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-cy-7(1).png?raw=true)
+
+![Image-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-cy-7(2).png?raw=true)
+
+![Image-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-cy-7(3).png?raw=true)
+
+[Worksheet](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/DNSLiveLabWorksheet-Completed.docx)
 
 ---
 ## Task 8: Protocols: DHCP

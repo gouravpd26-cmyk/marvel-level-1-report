@@ -157,6 +157,11 @@ To configure the AWS Command Line Interface (CLI), implement secure Identity and
 ### Key Takeaways
 Successfully bridged local command-line operations with AWS infrastructure, gaining practical experience in automated cloud storage management and programmatic identity verification.
 
+![Img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-6(1).png?raw=true)
+
+![Img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-6(2).png?raw=true)
+
+
 ---
 
 ## Task 7: Deploy a Containerized Application on Kubernetes
@@ -184,6 +189,10 @@ To make the application accessible, I created a `Service` manifest (`service.yam
 
 ### Conclusion
 The application was successfully containerized, deployed, networked, and scaled using declarative YAML manifests and `kubectl` commands, fulfilling all expected task outcomes.
+
+![Img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-7(1).png?raw=true)
+
+![Img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-7(2).png?raw=true)
 
 ---
 
@@ -216,6 +225,12 @@ Created a Deployment (`aws-app-deployment`) that utilized both resources:
 ### Conclusion
 The application deployment was successfully configured to securely consume both non-sensitive settings and sensitive AWS credentials using Kubernetes native resources.
 
+![Img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-8(1).png?raw=true)
+
+![Img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-8(2).png?raw=true)
+
+![Img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-8(3).png?raw=true)
+
 ---
 
 ## Task 9: Deploy an App to Push Files from Kubernetes to S3
@@ -246,6 +261,14 @@ The pipeline was successfully validated end-to-end:
 
 ### Conclusion
 This task successfully demonstrated a complete, end-to-end cloud-native pipeline. I was able to build a custom application, package it with Docker, deploy it to Kubernetes, securely manage secrets, and interact with external cloud resources (AWS S3) dynamically.
+
+![Img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-9(1).png?raw=true)
+
+![Img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-9(2).png?raw=true)
+
+![Img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-9(3).png?raw=true)
+
+![Img-4](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-9(4).png?raw=true)
 
 ---
 
@@ -346,5 +369,98 @@ Acts like digital ping-pong to test if a target system is reachable.
 
 ### 2. Traceroute
 Maps the exact path (hops) data takes to a destination by manipulating the packet's **Time-To-Live (TTL)** value. Each router drops the TTL by 1; when TTL hits 0, the router drops the packet and sends back an **ICMP Time Exceeded (Type 11)** message, revealing its IP address and delay.
+
+---
+
+## Task 10: Protocols: HTTP (s)
+Task 10 explores the fundamental web protocols: HTTP and HTTPS. While HTTP facilitates standard client-server communication for delivering web resources, HTTPS enhances this by employing SSL/TLS encryption. This secure layer prevents data interception and verifies server authenticity. I successfully observed these differences by accessing example.com over both protocols.
+
+---
+
+## Task 11: Protocols: Other Important models
+
+Task 11 explains the OSI model, a theoretical framework dividing network communication into seven layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application. While real-world implementations like TCP/IP condense these layers, the OSI model remains an essential educational tool for understanding network operations and describing networking equipment.
+
+---
+
+## Task 12: Windows: Introduction 
+
+Task 12 introduces the Microsoft Windows operating system, focusing on file navigation and system management. It highlights the hierarchical folder structure in File Explorer for organizing data. Furthermore, it emphasizes essential maintenance habits, including regular Windows updates, secure application management, and utilizing Task Manager to monitor real-time system performance.
+
+---
+
+## Task 13: Windows: Powershell
+
+Task 13 details PowerShell, a powerful, cross-platform automation tool and scripting language by Microsoft. Unlike traditional text-based shells, PowerShell is built on the .NET framework and utilizes object-oriented data processing. This structural advantage allows administrators to easily automate complex system configurations and manage interconnected environments with high efficiency.
+
+---
+
+## Task 14:  Windows: Powershell vs CMD
+
+ Task 14 compares Windows Command Prompt and PowerShell. CMD is a legacy, text-based shell suitable for basic, local automation tasks. Conversely, PowerShell is a modern, object-oriented framework designed for advanced, remote system administration. Ultimately, PowerShell offers greater flexibility and capabilities, though CMD aliases ease the transition for traditional users.
+
+ ---
+
+ ## Task 15: Windows: System32
+
+Task 15 explains the Windows directory, typically located at `C:\Windows`, which houses essential operating system files. It emphasizes the critical System32 subfolder, containing vital tools and utilities. Modifying or deleting System32 files can severely break Windows. Environment variables like `%windir%` dynamically help the system locate this core directory reliably.
+
+---
+
+## Task 16: Windows: User Accounts & UAC 
+
+Task 16 covers Windows user accounts, highlighting Administrators and Standard Users. Administrators hold full privileges to modify system settings and user groups, while Standard Users only manage personal files. It also explains managing profiles located in `C:\Users` and utilizing local groups to streamline permission management across multiple users effectively.
+
+---
+
+## Task 17: Windows: Security 
+Task 17 details built-in Windows Security features designed to protect against threats. It covers Virus & threat protection for malware scanning, App & browser control, and Device security. Additionally, it highlights the Windows Firewall, which controls inbound and outbound network access across Domain, Private, and untrusted Public networks securely.
+
+---
+
+## Task 18: Linux: Introduction
+ 
+Task 18 introduces Linux, an open-source, highly efficient, and flexible operating system. Widely utilized in web servers, critical infrastructure, and retail systems, Linux offers stability and lightweight performance. It explains that Linux encompasses multiple distributions, like Ubuntu and Debian, which are customizable for varied server and desktop computing needs.
+
+---
+
+## Task 19: Linux: File Systems
+Task 19 covers essential Linux file management commands. Key utilities include touch for creating files, mkdir for directories, cp for copying, mv for moving or renaming, and rm for permanent deletion. It also introduces the file command to accurately identify file types, as Linux doesn't rely strictly on extensions.
+
+---
+
+## Task 20: Others: Cryptography - Part 1
+
+Task 20 introduces cryptography, the cornerstone of digital privacy and security. It ensures confidentiality and integrity by transforming readable plaintext into unreadable ciphertext using mathematical ciphers and secret keys. Decryption reverses this process. Cryptography safely underpins everyday activities, from secure web browsing to maintaining essential regulatory data compliance.
+
+---
+
+## Task 21:  Others: Cyptography - Part 2
+
+Task 21 contrasts symmetric and asymmetric encryption. Symmetric encryption, like AES, uses a single shared key for both encryption and decryption, demanding secure key exchange. Asymmetric encryption, like RSA, solves this distribution problem by using a public key to encrypt and a private key to decrypt, though it is slower.
+
+---
+
+## Task 23: Principles of CyberSecurity: CIA 
+
+Task 23 introduces the CIA triad, the foundational pillar of cybersecurity. This framework focuses on preserving Confidentiality (keeping data private), Integrity (preventing unauthorized modifications), and Availability (ensuring systems remain accessible). Understanding these core principles helps security professionals identify real-world vulnerabilities and make informed decisions to protect digital environments from attacks.
+
+---
+
+## Task 24: Principles of CyberSecurity: CIA - Explanantion 
+
+Task 24 details the CIA Triad, cybersecurity's core foundation. Confidentiality ensures sensitive data remains accessible only to authorized individuals, preventing privacy breaches. Integrity guarantees data remains accurate and unaltered by unauthorized parties. Finally, Availability ensures critical services and data are reliably accessible to authorized users exactly when needed.
+
+---
+
+## Task 25: Path 1 - Red Teaming
+
+Task 25 introduces offensive security, focusing on actively testing systems to uncover weaknesses before real attackers exploit them. It emphasizes viewing networks from an attacker's perspective by questioning exposed resources and system assumptions. Additionally, it defines penetration testing as a legal, ethical process used to strengthen organizational security.
+
+---
+
+## Task 26: Red Teaming Continuation
+
+Task 26 introduces a practical ethical hacking exercise, defining core offensive security terms like Red Teaming, Vulnerability, Exploit, and Scope. Highlighting the critical requirement of explicit permission, the task demonstrates how attackers discover hidden web application pages manually through URL manipulation and automatically using enumeration tools like Gobuster.
 
 ---

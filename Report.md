@@ -88,12 +88,17 @@ The deployment was verified by navigating to `http://localhost:8080` in a web br
 * **Deployment:** Connected securely via SSH using the `ec2-user` profile, installed the Nginx web server via the `dnf` package manager, and successfully verified public web access.
 * **Cleanup:** Terminated the instance and its attached storage volumes to ensure zero ongoing costs.
 
+![Img-1](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/ec2-task4-marvel.png?raw=true)
+
 ### Concepts Mastered
 * **IaaS Fundamentals:** Gained practical, hands-on experience provisioning and configuring raw cloud compute resources.
 * **Compute Mechanics:** Understood the `t3.micro` burstable CPU credit system and its fixed memory constraints.
 * **Network Security:** Mastered using AWS Security Groups as stateful, virtual firewalls to enforce the principle of least privilege.
 * **Cryptographic Authentication:** Transitioned from traditional password-based logins to highly secure asymmetric key-pair (`.pem`) remote access.
 
+![Img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/ec2-task4-2.png?raw=true)
+
+![Img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/ec2-task4-3.png?raw=true)
 
 ---
 
@@ -127,6 +132,120 @@ Created a declarative manifest file (`nginx-pod.yaml`) to define the desired sta
 ![img-2](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-5(2).png?raw=true)
 
 ![img-3](https://github.com/gouravpd26-cmyk/marvel-level-1-report/blob/main/M-1-T-5(3).png?raw=true)
+
+---
+
+## Task 6: Manage AWS S3 and IAM with CLI
+
+### Task Objective
+To configure the AWS Command Line Interface (CLI), implement secure Identity and Access Management (IAM) practices, and manage Amazon S3 object storage directly from the terminal.
+
+### IAM Security & Authentication
+* **User Creation:** Created a dedicated IAM User specifically for programmatic access, ensuring the root AWS account remains secure.
+* **Policy Management:** Assigned necessary S3 access policies to the IAM user to authorize specific cloud operations.
+* **CLI Configuration:** Generated an Access Key ID and Secret Access Key, and used `aws configure` to authenticate the Kali Linux terminal with AWS.
+
+### S3 Bucket Provisioning
+* **Global Naming Constraints:** Navigated S3's global namespace requirements by resolving a `BucketAlreadyExists` error to secure a unique bucket identifier.
+* **Bucket Creation:** Successfully utilized the `aws s3 mb` command to provision a new storage bucket hosted in the `ap-south-1` region.
+
+### Object Operations & Data Lifecycle
+* **Uploading:** Created a local test file and pushed it to the cloud container using `aws s3 cp`.
+* **Verification:** Queried the cloud environment using `aws s3 ls` to confirm the object was successfully stored.
+* **Retrieval & Cleanup:** Downloaded the object back to the local filesystem, followed by securely deleting the cloud copy using `aws s3 rm`.
+
+### Key Takeaways
+Successfully bridged local command-line operations with AWS infrastructure, gaining practical experience in automated cloud storage management and programmatic identity verification.
+
+---
+
+## Task 7: Deploy a Containerized Application on Kubernetes
+
+### Overview
+This report details the deployment of a containerized Nginx application to a Kubernetes cluster using YAML manifests. The application was exposed both internally and externally, and dynamic scaling was verified.
+
+### 1. Deployment Creation
+I created a Kubernetes `Deployment` manifest (`deployment.yaml`) to manage application. 
+- **Image used**: `nginx:latest`
+- **Replicas**: Initially set to 3 to ensure high availability.
+- **Result**: The deployment successfully pulled the Docker image and spun up 3 identical Pods running the application.
+
+### 2. Exposing the Application
+To make the application accessible, I created a `Service` manifest (`service.yaml`). 
+- **Service Type**: `NodePort`. This type of service inherently satisfies two networking requirements:
+  1. **ClusterIP**: It creates an internal IP address so other resources inside the Kubernetes cluster can communicate with the app.
+  2. **NodePort**: It maps an external port (`30080`) on the node directly to the internal pods, allowing to access the application via a web browser from our local machine.
+- **Validation**: The Nginx welcome page was successfully accessed via the exposed NodePort URL.
+
+### 3. Scaling Operations
+ Interacted with the Kubernetes control plane using `kubectl` to dynamically scale the application without downtime.
+- **Scaling Up**: Scaled the deployment to 5 replicas (`kubectl scale deployment/my-nginx-app --replicas=5`). Kubernetes instantly scheduled and started 2 additional pods.
+- **Scaling Down**: Scaled the deployment back down to 2 replicas (`kubectl scale deployment/my-nginx-app --replicas=2`). Kubernetes gracefully terminated 3 of the pods.
+
+### Conclusion
+The application was successfully containerized, deployed, networked, and scaled using declarative YAML manifests and `kubectl` commands, fulfilling all expected task outcomes.
+
+---
+
+## Task 8: Use Kubernetes Secrets and Environment Variables
+
+### Overview
+This report documents the successful implementation of configuration management and sensitive data handling in a Kubernetes cluster using ConfigMaps and Secrets. I verified the secure injection of these resources into a running container as environment variables.
+
+### 1. ConfigMaps vs. Secrets 
+A core outcome of this task was understanding when to use which resource:
+- **ConfigMap**: Used for non-sensitive data, such as application settings, URLs, or environment tags (e.g., `APP_MODE=production`).
+- **Secret**: Used specifically for sensitive data, such as passwords, API tokens, and AWS credentials. Kubernetes stores this data securely (Base64 encoded) and can be configured for encryption at rest to prevent accidental exposure.
+
+### 2. Configuration Management (ConfigMap)
+I created a ConfigMap named `app-config` using literal values to store general application settings.
+- **Injected Variables**: `APP_MODE=production` and `APP_REGION=us-east-1`
+- **Purpose**: To decouple the application's configuration from its container image, making the app portable across different environments.
+
+### 3. Secure Credential Storage (Secret)
+I created a generic Secret named `aws-credentials` to securely store AWS authentication keys.
+- **Injected Variables**: `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`
+- **Outcome**: By using a Secret, Avoided hardcoding sensitive AWS credentials directly into our Deployment YAML or Docker image, aligning with security best practices.
+
+### 4. Deployment and Verification
+Created a Deployment (`aws-app-deployment`) that utilized both resources:
+- Using `envFrom`, we injected all key-value pairs from the `app-config` ConfigMap directly into the container's environment.
+- Using `valueFrom.secretKeyRef`, we selectively mapped the AWS credentials from our Secret to the exact environment variables expected by the AWS SDK.
+- **Verification**: Successfully used `kubectl exec` to enter the running Pod and execute the `env` command. The output confirmed that both the standard configuration (`APP_MODE`, `APP_REGION`) and the sensitive AWS credentials were successfully loaded into the container's environment, ready for the application to use.
+
+### Conclusion
+The application deployment was successfully configured to securely consume both non-sensitive settings and sensitive AWS credentials using Kubernetes native resources.
+
+---
+
+## Task 9: Deploy an App to Push Files from Kubernetes to S3
+
+### Overview
+This report details the successful development and deployment of a custom file-upload application on a Kubernetes cluster. The application securely pushes user-uploaded files directly to an AWS S3 bucket, integrating core concepts across Docker, Kubernetes, AWS IAM, and Kubernetes Secrets.
+
+### 1. Application Development and Containerization
+I developed a lightweight Python application using the Flask framework. The application provides a simple web interface for users to upload files and handles the backend logic of transmitting those files to S3.
+- To ensure portability, I containerized the application by writing a `Dockerfile` that packages the Python environment, dependencies, and application code.
+- I built the Docker image (`s3-uploader-app:v1`) directly inside the Minikube Docker environment to streamline the local deployment process.
+
+### 2. Secure Credential Management
+Security was a primary focus for this deployment. Rather than hardcoding sensitive AWS credentials into the application code or Docker image, I utilized Kubernetes native Secrets.
+- I created a Secret manifest to securely store the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+- I provisioned a dedicated IAM User in the AWS Console with an S3 access policy to strictly control access to the storage resources.
+
+### 3. Kubernetes Deployment and Configuration
+I authored a comprehensive Kubernetes Deployment and Service manifest to manage the application lifecycle and networking.
+- **Environment Injection**: The Deployment was configured to securely inject the AWS credentials from the Kubernetes Secret into the Pod's environment variables. I also passed the target `S3_BUCKET_NAME` as a standard environment variable.
+- **Networking**: I exposed the application to my local machine using a `NodePort` Service, allowing me to access the web UI seamlessly via the browser.
+
+### 4. Validation and Outcomes
+The pipeline was successfully validated end-to-end:
+1. I accessed the web application interface running on the Minikube cluster.
+2. I uploaded a file through the application's UI.
+3. I verified in the AWS S3 Console that the file was successfully transmitted and stored in the target bucket.
+
+### Conclusion
+This task successfully demonstrated a complete, end-to-end cloud-native pipeline. I was able to build a custom application, package it with Docker, deploy it to Kubernetes, securely manage secrets, and interact with external cloud resources (AWS S3) dynamically.
 
 ---
 
